@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { montserrat } from "@/app/ui/font";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import { ThemeProvider } from "@mui/material";
+import AppHeader from "@/app/ui/header";
 import "./globals.css";
+import { theme } from "./ui/theme";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={montserrat.className}>
       <body>
-        <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+        <AppRouterCacheProvider>
+          <AppHeader />
+          {children}
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

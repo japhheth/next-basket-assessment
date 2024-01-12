@@ -1,7 +1,7 @@
 "use client";
 
 const Home = () => {
-  return <p>Hello Next </p>;
+  return <p style={{ marginTop: "60px" }}>Hello Next </p>;
 };
 
 export default Home;
