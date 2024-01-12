@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import Image from "next/image";
 import {
   Typography,
@@ -29,6 +29,8 @@ import searchBlueIcon from "../../../public/svgs/search-icon-blue.svg";
 import likeBlueIcon from "../../../public/svgs/like-icon-blue.svg";
 
 const AppHeader = () => {
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+
   const menuItems: { name: string; icon?: ReactNode }[] = [
     {
       name: "Home",
@@ -50,6 +52,8 @@ const AppHeader = () => {
       name: "Pages",
     },
   ];
+
+  const mobileMenuItems: string[] = ["Home", "Product", "Pricing", "Contact"];
 
   return (
     <AppBar position="static" sx={{ width: "100%" }} elevation={0}>
@@ -153,9 +157,40 @@ const AppHeader = () => {
         <Box sx={{ display: "flex", gap: "30px", alignItems: "center" }}>
           <Image priority src={searchIcon} alt="search-icon" />
           <Image priority src={cartIcon} alt="cart-icon" />
-          <Image priority src={menuIcon} alt="menu-icon" />
+          <Image
+            priority
+            src={menuIcon}
+            alt="menu-icon"
+            role="button"
+            style={{ cursor: "pointer" }}
+            onClick={() => setShowDropdown(showDropdown ? false : true)}
+          />
         </Box>
       </Box>
+
+      {showDropdown ? (
+        <Box
+          sx={{
+            display: { xs: "flex", md: "none" },
+            flexDirection: "column",
+            gap: "20px",
+            alignItems: "center",
+            backgroundColor: "#fff",
+            py: 10,
+          }}
+        >
+          {mobileMenuItems.map((mobileMenuItem, index) => (
+            <Typography
+              key={`${mobileMenuItem}-${Math.random()}-${index}`}
+              color={"#737373"}
+              fontWeight={mobileMenuItem === "Product" ? 500 : 700}
+              fontSize={30}
+            >
+              {mobileMenuItem}
+            </Typography>
+          ))}
+        </Box>
+      ) : null}
     </AppBar>
   );
 };
