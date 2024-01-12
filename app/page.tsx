@@ -1,7 +1,14 @@
 "use client";
 
+import { Box } from "@mui/material";
+import HomeHeader from "./ui/home/homeHeader";
+
 const Home = () => {
-  return <p style={{ marginTop: "60px" }}>Hello Next </p>;
+  return (
+    <Box sx={{ px: { md: 2, xl: 20 }, py: 4 }}>
+      <HomeHeader />
+    </Box>
+  );
 };
 
 export default Home;
